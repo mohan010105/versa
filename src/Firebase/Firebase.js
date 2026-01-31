@@ -1,21 +1,33 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+/**
+ * Firebase Configuration
+ * 
+ * This file uses environment variables for security.
+ * All sensitive credentials are loaded from .env.local (local dev) or Vercel Dashboard (production).
+ * 
+ * Never hardcode API keys or other sensitive information in this file.
+ */
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { initializeApp } from "firebase/app";
+
+/**
+ * Firebase configuration using environment variables
+ * 
+ * Required environment variables (set in .env.local or Vercel Dashboard):
+ * - VITE_FIREBASE_API_KEY: Firebase API Key
+ * - VITE_FIREBASE_AUTH_DOMAIN: Firebase Auth Domain
+ * - VITE_FIREBASE_PROJECT_ID: Firebase Project ID
+ * - VITE_FIREBASE_STORAGE_BUCKET: Firebase Storage Bucket
+ * - VITE_FIREBASE_MESSAGING_SENDER_ID: Firebase Messaging Sender ID
+ * - VITE_FIREBASE_APP_ID: Firebase App ID
+ */
 const firebaseConfig = {
-  apiKey: "AIzaSyDntOg7GKBBZa59JAf21HYIJeG2ocwc0nk",
-  authDomain: "versa-b6835.firebaseapp.com",
-  projectId: "versa-b6835",
-  storageBucket: "versa-b6835.firebasestorage.app",
-  messagingSenderId: "402357397269",
-  appId: "1:402357397269:web:c1586ffc07056a5629ab1c",
-  measurementId: "G-ZWZLLNKJM0"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Initialize Firebase with secure configuration
+export const app = initializeApp(firebaseConfig);
